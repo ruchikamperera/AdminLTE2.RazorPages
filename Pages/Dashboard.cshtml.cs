@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace AdminLTE2.Web.Pages
 {
-    public class XIndexModel : PageModel
+    public class AndexModel : PageModel
     {
         public void OnGet()
         {

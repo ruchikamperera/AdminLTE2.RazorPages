@@ -7,8 +7,10 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace AdminLTE2.Web.Pages
 {
-    public class XIndexModel : PageModel
+    public class MenuModel : PageModel
     {
+        private readonly QRAppContext _context;
+
         public void OnGet()
         {
 

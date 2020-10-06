@@ -1,8 +1,10 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.EntityFrameworkCore;
 
 namespace AdminLTE2.Web
 {
@@ -19,7 +21,14 @@ namespace AdminLTE2.Web
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddRazorPages();
+          
+          
             services.AddApplicationInsightsTelemetry();
+            MvcOptions a = new MvcOptions();
+            a.EnableEndpointRouting = false;
+
+            services.AddDbContext<QRAppContext>(options =>
+                    options.UseSqlServer(Configuration.GetConnectionString("QRAppContext")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -48,6 +57,12 @@ namespace AdminLTE2.Web
             {
                 endpoints.MapRazorPages();
             });
+            //app.UseMvc(routes =>
+            //{
+            //    routes.MapRoute(
+            //        name: "default",
+            //        template: "{controller=Home}/{action=Index}/{id?}");
+            //});
         }
     }
 }
